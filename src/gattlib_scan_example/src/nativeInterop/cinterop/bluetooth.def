@@ -2,3 +2,37 @@ headers = gattlib.h
 
 compilerOpts.linux = -I/usr/include -I/usr/include/x86_64-linux-gnu
 linkerOpts.linux = -L/usr/lib/ -lgattlib
+
+---
+
+static void ble_discovered_device(void *adapter, const char* addr, const char* name, void *user_data) {
+    if (name) {
+		printf("Discovered %s - '%s'\n", addr, name);
+	} else {
+		printf("Discovered %s\n", addr);
+	}
+}
+
+int scan(){
+
+    void* adapter;
+    int ret;
+
+    ret = gattlib_adapter_open(NULL, &adapter);
+	if (ret) {
+		fprintf(stderr, "ERROR: Failed to open adapter.\n");
+		return 1;
+	}
+
+	ret = gattlib_adapter_scan_enable(adapter, ble_discovered_device, 5, NULL /* user_data */);
+	if (ret) {
+		fprintf(stderr, "ERROR: Failed to scan.\n");
+	}
+
+	gattlib_adapter_scan_disable(adapter);
+
+	puts("Scan completed");
+
+    return 1;
+
+}
