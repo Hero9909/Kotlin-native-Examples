@@ -11,3 +11,6 @@ this Example uses the gattlib to scan for BLE Devices using the default / first 
 &#9733;&#9733;&#9733;&#9734;&#9734;
 ##### Requirements
 > gattlib [from here](https://github.com/labapart/gattlib)
+
+# Note
+Feel free to contact me throught an issues if there are any issues in this code or its source.
