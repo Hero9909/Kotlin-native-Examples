@@ -1,0 +1,4 @@
+rootProject.name = 'gattlib_scan_example'
+
+
+enableFeaturePreview('GRADLE_METADATA')
